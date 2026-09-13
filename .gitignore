@@ -1,0 +1,30 @@
+"terraform.tfvars" | Out-File -Append -Encoding utf8 .gitignore
+
+# Terraform local state (only relevant for Assignments 1-2, which have no S3 backend)
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfstate.backup
+
+# Terraform working directories (plugin cache, backend config cache)
+**/.terraform/
+
+# Variable files containing secrets or personal values (IPs, key names, DB passwords)
+**/*.tfvars
+**/*.tfvars.json
+
+# Crash logs, if Terraform ever errors out mid-run
+crash.log
+crash.*.log
+
+# Plan output files, if you ever save one with `terraform plan -out=tfplan`
+**/*.tfplan
+
+# Override files (used for local testing tweaks, shouldn't be committed)
+**/override.tf
+**/override.tf.json
+**/*_override.tf
+**/*_override.tf.json
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
