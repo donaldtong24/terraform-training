@@ -28,3 +28,5 @@ crash.*.log
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
+**/lambda_payload.zip
