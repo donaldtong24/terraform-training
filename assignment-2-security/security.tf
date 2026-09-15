@@ -82,6 +82,28 @@ resource "aws_network_acl_rule" "out_all_tcp" {
     from_port = 0
     to_port = 65535
 }
+#these two rules allow ICMP traffic to/from the peer VPC, which is required for ping to work
+resource "aws_network_acl_rule" "in_icmp" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 130
+  egress         = false
+  protocol       = "icmp"
+  rule_action    = "allow"
+  cidr_block     = "10.1.0.0/16"
+  icmp_type      = -1
+  icmp_code      = -1
+}
+
+resource "aws_network_acl_rule" "out_icmp" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 130
+  egress         = true
+  protocol       = "icmp"
+  rule_action    = "allow"
+  cidr_block     = "10.1.0.0/16"
+  icmp_type      = -1
+  icmp_code      = -1
+}
 
 resource "aws_network_acl_association" "public_a" {
     network_acl_id = aws_network_acl.public.id
